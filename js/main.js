@@ -13,7 +13,7 @@ const mobileNav = window.matchMedia('(max-width: 900px)');
 function syncMenuLabel(
   isOpen = navToggle?.getAttribute('aria-expanded') === 'true'
 ) {
-  if (navToggle) {
+  if (navToggle && typeof window.getTranslation === 'function') {
     navToggle.setAttribute(
       'aria-label',
       window.getTranslation(isOpen ? 'menuClose' : 'menuOpen')
@@ -119,60 +119,99 @@ if (yearNode) {
 const bookingForm = document.getElementById('booking-form');
 
 if (bookingForm) {
-  const bookingError = document.getElementById('booking-error');
 
-  const nameInput = document.getElementById('booking-name');
-  const phoneInput = document.getElementById('booking-phone');
-  const cameraInput = document.getElementById('booking-camera');
-  const needsInput = document.getElementById('booking-needs');
+  const bookingError =
+    document.getElementById('booking-error');
 
-  const bookingFields = [
-    {
-      element: nameInput,
-      label: 'Nama'
-    },
-    {
-      element: phoneInput,
-      label: 'Nomor WhatsApp'
-    },
-    {
-      element: cameraInput,
-      label: 'Kamera yang diminati'
-    },
-    {
-      element: needsInput,
-      label: 'Kebutuhan pemotretan'
-    }
-  ];
+  const nameInput =
+    document.getElementById('booking-name');
 
+  const phoneInput =
+    document.getElementById('booking-phone');
+
+  const cameraInput =
+    document.getElementById('booking-camera');
+
+  const needsInput =
+    document.getElementById('booking-needs');
+
+
+  /* =======================================================
+     SUBMIT FORM
+     ======================================================= */
 
   bookingForm.addEventListener('submit', (event) => {
+
     event.preventDefault();
 
 
     /* -----------------------------------------------------
-       CEK FIELD KOSONG
+       VALIDASI ELEMENT
        ----------------------------------------------------- */
 
-    const missingFields = bookingFields.filter(
-      ({ element }) => !element || !element.value.trim()
-    );
+    if (
+      !nameInput ||
+      !phoneInput ||
+      !cameraInput ||
+      !needsInput
+    ) {
+
+      console.error(
+        'Booking form tidak lengkap.'
+      );
+
+      return;
+    }
+
+
+    /* -----------------------------------------------------
+       AMBIL DATA
+       ----------------------------------------------------- */
+
+    const name =
+      nameInput.value.trim();
+
+    const phone =
+      phoneInput.value.trim();
+
+    const camera =
+      cameraInput.value.trim();
+
+    const needs =
+      needsInput.value.trim();
+
+
+    /* -----------------------------------------------------
+       CEK DATA KOSONG
+       ----------------------------------------------------- */
+
+    const missingFields = [];
+
+    if (!name) {
+      missingFields.push('Nama');
+    }
+
+    if (!phone) {
+      missingFields.push('Nomor WhatsApp');
+    }
+
+    if (!camera) {
+      missingFields.push('Kamera yang diminati');
+    }
+
+    if (!needs) {
+      missingFields.push('Kebutuhan pemotretan');
+    }
 
 
     if (missingFields.length > 0) {
+
       if (bookingError) {
+
         bookingError.textContent =
-          `Mohon isi semua field wajib: ${missingFields
-            .map(({ label }) => label)
-            .join(', ')}.`;
+          `Mohon isi semua field wajib: ${missingFields.join(', ')}.`;
 
         bookingError.hidden = false;
-      }
-
-      const firstMissingField = missingFields[0].element;
-
-      if (firstMissingField) {
-        firstMissingField.focus();
       }
 
       return;
@@ -188,19 +227,9 @@ if (bookingForm) {
     }
 
 
-    /* -----------------------------------------------------
-       AMBIL DATA FORM
-       ----------------------------------------------------- */
-
-    const name = nameInput.value.trim();
-    const phone = phoneInput.value.trim();
-    const camera = cameraInput.value.trim();
-    const needs = needsInput.value.trim();
-
-
-    /* -----------------------------------------------------
-       PESAN WHATSAPP OTOMATIS
-       ----------------------------------------------------- */
+    /* =====================================================
+       PESAN WHATSAPP
+       ===================================================== */
 
     const message =
 `Halo clicknclipcams,
@@ -217,28 +246,72 @@ Mohon informasi mengenai ketersediaan kamera dan proses bookingnya.
 Terima kasih.`;
 
 
-    /* -----------------------------------------------------
-       NOMOR WHATSAPP CLICKNCLIPCAM
-       0857-8004-3435
-       Menjadi format internasional:
-       6285780043435
-       ----------------------------------------------------- */
+    /* =====================================================
+       NOMOR WHATSAPP CLICK N CLIP CAMS
+       ===================================================== */
 
-    const whatsappNumber = '6285780043435';
+    const whatsappNumber =
+      '6285780043435';
 
 
-    /* -----------------------------------------------------
-       BUAT LINK WHATSAPP
-       ----------------------------------------------------- */
+    /* =====================================================
+       ENCODE PESAN
+       ===================================================== */
+
+    const encodedMessage =
+      encodeURIComponent(message);
+
+
+    /* =====================================================
+       BUAT URL WHATSAPP
+       ===================================================== */
 
     const whatsappUrl =
-      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
 
 
-    /* -----------------------------------------------------
+    /* =====================================================
+       DEBUG
+       ===================================================== */
+
+    console.log(
+      'Nama:',
+      name
+    );
+
+    console.log(
+      'Nomor:',
+      phone
+    );
+
+    console.log(
+      'Kamera:',
+      camera
+    );
+
+    console.log(
+      'Kebutuhan:',
+      needs
+    );
+
+    console.log(
+      'Pesan WhatsApp:',
+      message
+    );
+
+    console.log(
+      'WhatsApp URL:',
+      whatsappUrl
+    );
+
+
+    /* =====================================================
        BUKA WHATSAPP
-       ----------------------------------------------------- */
+       ===================================================== */
 
-    window.location.href = whatsappUrl;
+    window.location.href =
+      whatsappUrl;
+
   });
+
 }
