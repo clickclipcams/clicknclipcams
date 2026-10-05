@@ -80,13 +80,14 @@
           </div>
           <div class="form-card">
             <h3 data-i18n="contactFormTitle">Pesan kamera</h3>
-            <div class="form-fields">
-              <input type="text" placeholder="Nama Anda" aria-label="Nama Anda" data-i18n-placeholder="namePlaceholder" data-i18n-aria="namePlaceholder" />
-              <input type="text" placeholder="Nomor telepon" aria-label="Nomor telepon" data-i18n-placeholder="phonePlaceholder" data-i18n-aria="phonePlaceholder" />
-              <input type="text" placeholder="Kamera yang diminati" aria-label="Kamera yang diminati" data-i18n-placeholder="cameraPlaceholder" data-i18n-aria="cameraPlaceholder" />
-              <textarea placeholder="Ceritakan kebutuhan foto Anda" aria-label="Ceritakan kebutuhan foto Anda" data-i18n-placeholder="shootPlaceholder" data-i18n-aria="shootPlaceholder"></textarea>
-              <a href="https://wa.me/message/5H4XGYNTRZLXB1" class="btn btn-primary" target="_blank" rel="noopener noreferrer" data-i18n="submitWhatsapp">PESAN VIA WHATSAPP</a>
-            </div>
+            <form class="form-fields" id="booking-form" novalidate>
+              <input id="booking-name" name="name" type="text" placeholder="Nama Anda" aria-label="Nama Anda" data-i18n-placeholder="namePlaceholder" data-i18n-aria="namePlaceholder" required />
+              <input id="booking-phone" name="phone" type="tel" placeholder="Nomor telepon" aria-label="Nomor telepon" data-i18n-placeholder="phonePlaceholder" data-i18n-aria="phonePlaceholder" required />
+              <input id="booking-camera" name="camera" type="text" placeholder="Kamera yang diminati" aria-label="Kamera yang diminati" data-i18n-placeholder="cameraPlaceholder" data-i18n-aria="cameraPlaceholder" required />
+              <textarea id="booking-needs" name="needs" placeholder="Ceritakan kebutuhan foto Anda" aria-label="Ceritakan kebutuhan foto Anda" data-i18n-placeholder="shootPlaceholder" data-i18n-aria="shootPlaceholder" required></textarea>
+              <p class="form-error" id="booking-error" role="alert" hidden></p>
+              <button type="submit" class="btn btn-primary" data-i18n="submitWhatsapp">PESAN VIA WHATSAPP</button>
+            </form>
           </div>
         </div>
       </section>

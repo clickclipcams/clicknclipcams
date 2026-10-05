@@ -59,3 +59,45 @@ revealItems.forEach((item) => revealObserver.observe(item));
 
 const yearNode = document.getElementById('year');
 if (yearNode) yearNode.textContent = new Date().getFullYear();
+
+const bookingForm = document.getElementById('booking-form');
+if (bookingForm) {
+  const bookingError = document.getElementById('booking-error');
+  const bookingFields = [
+    { element: document.getElementById('booking-name'), label: 'Nama' },
+    { element: document.getElementById('booking-phone'), label: 'Nomor WhatsApp' },
+    { element: document.getElementById('booking-camera'), label: 'Kamera yang diminati' },
+    { element: document.getElementById('booking-needs'), label: 'Kebutuhan pemotretan' }
+  ];
+
+  bookingForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const missingFields = bookingFields.filter(({ element }) => !element.value.trim());
+    if (missingFields.length) {
+      bookingError.textContent = `Mohon isi semua field wajib: ${missingFields.map(({ label }) => label).join(', ')}.`;
+      bookingError.hidden = false;
+      missingFields[0].element.focus();
+      return;
+    }
+
+    bookingError.hidden = true;
+
+    const [name, phone, camera, needs] = bookingFields.map(({ element }) => element.value.trim());
+    const message = `Halo clicknclipcams 👋
+
+Saya ingin melakukan booking kamera.
+
+Nama: ${name}
+No. WhatsApp: ${phone}
+Kamera yang diminati: ${camera}
+Kebutuhan pemotretan: ${needs}
+
+Mohon informasi mengenai ketersediaan kamera dan proses bookingnya.
+
+Terima kasih.`;
+    const whatsappUrl = `https://wa.me/message/5H4XGYNTRZLXB1?text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappUrl, '_blank');
+  });
+}
