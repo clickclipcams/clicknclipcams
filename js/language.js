@@ -37,10 +37,34 @@ const translations = {
     homeSeoList4: 'Rental kamera Jabodetabek',
 
     // Cameras
-    camerasTitle: 'Kamera',
+    camerasTitle: 'Sewa Kamera Jabodetabek | Pilihan Kamera clicknclipcams',
+    camerasMeta:
+      'Pilihan kamera untuk disewa di Jabodetabek. Temukan kamera Canon, Nikon, dan kamera lainnya untuk foto, liburan, acara, content creation, dan dokumentasi.',
+    camerasEyebrow: 'sewa kamera Jabodetabek',
+    camerasHeading: 'PILIHAN KAMERA UNTUK DISEWA',
     camerasSubtitle:
       'Pilih kamera yang sesuai dengan kebutuhan foto dan aktivitasmu.',
     camerasCta: 'SEWA SEKARANG',
+
+    // Camera descriptions
+    cameraM100Description:
+      'Kamera mirrorless ringkas untuk foto kasual, potret, dan cerita sehari-hari.',
+    cameraM3Description:
+      'Kamera mirrorless serbaguna untuk perjalanan, gaya hidup, dan momen berkesan.',
+    cameraJ5Description:
+      'Ringkas dan mudah digunakan untuk momen harian dan sesi foto kreatif.',
+    cameraS2700Description:
+      'Kamera saku sederhana untuk perjalanan dan foto spontan.',
+
+    // Camera image alt text
+    cameraAltM100: 'Canon EOS M100 untuk sewa kamera Jabodetabek',
+    cameraAltM3: 'Canon EOS M3 untuk sewa kamera Jabodetabek',
+    cameraAltJ5: 'Nikon 1 J5 untuk sewa kamera Jabodetabek',
+    cameraAltS2700:
+      'Nikon Coolpix S2700 untuk sewa kamera Jabodetabek',
+
+    startingFrom: 'Mulai dari',
+    bookThis: 'PESAN KAMERA',
 
     // Price
     priceTitle: 'Harga Kamera',
@@ -89,10 +113,24 @@ const translations = {
     bookingNeeds: 'Ceritakan kebutuhan foto Anda',
     submitWhatsapp: 'PESAN VIA WHATSAPP',
 
-    // Footer
-    footerText:
-      'Rental kamera untuk berbagai kebutuhan foto, konten, liburan, acara, dan dokumentasi di Jabodetabek.',
-    footerRights: '© 2026 clicknclipcams. All rights reserved.'
+    // General
+    booking: 'Booking Sekarang ↗',
+    explore: 'JELAJAHI KAMERA',
+    viewPrice: 'LIHAT HARGA',
+    homeCtaEyebrow: 'siap mengabadikan momen',
+    homeCtaTitle: 'SIAP MENANGKAP MOMEN?',
+    homeCtaDescription:
+      'Jelajahi katalog kamera atau langsung booking via WhatsApp.',
+    homeCtaButton: 'BOOKING SEKARANG ↗',
+    copyright: 'Hak cipta dilindungi.',
+
+    // Accessibility
+    navLabel: 'Navigasi utama',
+    brandHome: 'Beranda clicknclipcams',
+    languageLabel: 'Pilihan bahasa',
+    languageIndonesian: 'Bahasa Indonesia',
+    languageEnglish: 'Bahasa Inggris',
+    menuOpen: 'Buka menu'
   },
 
   en: {
@@ -133,10 +171,37 @@ const translations = {
     homeSeoList4: 'Camera rental Jabodetabek',
 
     // Cameras
-    camerasTitle: 'Cameras',
+    camerasTitle: 'Camera Rental Jabodetabek | clicknclipcams',
+    camerasMeta:
+      'Camera rental in Jabodetabek for photography, travel, events, content creation, and documentation. Explore Canon, Nikon, and other cameras available for rent.',
+    camerasEyebrow: 'camera rental Jabodetabek',
+    camerasHeading: 'CAMERAS AVAILABLE FOR RENT',
     camerasSubtitle:
       'Choose a camera that fits your photography and activity needs.',
     camerasCta: 'RENT NOW',
+
+    // Camera descriptions
+    cameraM100Description:
+      'A compact mirrorless camera for casual photography, portraits, and everyday moments.',
+    cameraM3Description:
+      'A versatile mirrorless camera for travel, lifestyle photography, and memorable moments.',
+    cameraJ5Description:
+      'Compact and easy to use for everyday moments and creative photo sessions.',
+    cameraS2700Description:
+      'A simple compact camera for travel and spontaneous photography.',
+
+    // Camera image alt text
+    cameraAltM100:
+      'Canon EOS M100 camera rental in Jabodetabek',
+    cameraAltM3:
+      'Canon EOS M3 camera rental in Jabodetabek',
+    cameraAltJ5:
+      'Nikon 1 J5 camera rental in Jabodetabek',
+    cameraAltS2700:
+      'Nikon Coolpix S2700 camera rental in Jabodetabek',
+
+    startingFrom: 'Starting from',
+    bookThis: 'RENT THIS CAMERA',
 
     // Price
     priceTitle: 'Camera Rental Prices',
@@ -185,12 +250,27 @@ const translations = {
     bookingNeeds: 'Tell us about your photography needs',
     submitWhatsapp: 'ORDER VIA WHATSAPP',
 
-    // Footer
-    footerText:
-      'Camera rental for photography, content creation, travel, events, and documentation in Jabodetabek.',
-    footerRights: '© 2026 clicknclipcams. All rights reserved.'
+    // General
+    booking: 'Book Now ↗',
+    explore: 'EXPLORE CAMERAS',
+    viewPrice: 'VIEW PRICES',
+    homeCtaEyebrow: 'ready to capture your moments',
+    homeCtaTitle: 'READY TO CAPTURE THE MOMENT?',
+    homeCtaDescription:
+      'Explore our camera catalog or book directly via WhatsApp.',
+    homeCtaButton: 'BOOK NOW ↗',
+    copyright: 'All rights reserved.',
+
+    // Accessibility
+    navLabel: 'Main navigation',
+    brandHome: 'clicknclipcams home',
+    languageLabel: 'Language selection',
+    languageIndonesian: 'Indonesian',
+    languageEnglish: 'English',
+    menuOpen: 'Open menu'
   }
 };
+
 
 function getSavedLanguage() {
   const savedLanguage = localStorage.getItem('siteLanguage');
@@ -202,6 +282,7 @@ function getSavedLanguage() {
   return 'id';
 }
 
+
 function applyTranslations(language) {
   const lang = translations[language] ? language : 'id';
   const currentTranslations = translations[lang];
@@ -211,7 +292,10 @@ function applyTranslations(language) {
     const key = element.getAttribute('data-i18n');
 
     if (
-      Object.prototype.hasOwnProperty.call(currentTranslations, key)
+      Object.prototype.hasOwnProperty.call(
+        currentTranslations,
+        key
+      )
     ) {
       element.textContent = currentTranslations[key];
     }
@@ -222,72 +306,146 @@ function applyTranslations(language) {
     const key = element.getAttribute('data-i18n-content');
 
     if (
-      Object.prototype.hasOwnProperty.call(currentTranslations, key)
-    ) {
-      element.setAttribute('content', currentTranslations[key]);
-    }
-  });
-
-  // Update placeholder
-  document.querySelectorAll('[data-i18n-placeholder]').forEach((element) => {
-    const key = element.getAttribute('data-i18n-placeholder');
-
-    if (
-      Object.prototype.hasOwnProperty.call(currentTranslations, key)
+      Object.prototype.hasOwnProperty.call(
+        currentTranslations,
+        key
+      )
     ) {
       element.setAttribute(
-        'placeholder',
+        'content',
         currentTranslations[key]
       );
     }
   });
 
+  // Update placeholder
+  document
+    .querySelectorAll('[data-i18n-placeholder]')
+    .forEach((element) => {
+      const key = element.getAttribute(
+        'data-i18n-placeholder'
+      );
+
+      if (
+        Object.prototype.hasOwnProperty.call(
+          currentTranslations,
+          key
+        )
+      ) {
+        element.setAttribute(
+          'placeholder',
+          currentTranslations[key]
+        );
+      }
+    });
+
+  // Update alt text
+  document
+    .querySelectorAll('[data-i18n-alt]')
+    .forEach((element) => {
+      const key = element.getAttribute('data-i18n-alt');
+
+      if (
+        Object.prototype.hasOwnProperty.call(
+          currentTranslations,
+          key
+        )
+      ) {
+        element.setAttribute(
+          'alt',
+          currentTranslations[key]
+        );
+      }
+    });
+
+  // Update aria-label
+  document
+    .querySelectorAll('[data-i18n-aria]')
+    .forEach((element) => {
+      const key = element.getAttribute('data-i18n-aria');
+
+      if (
+        Object.prototype.hasOwnProperty.call(
+          currentTranslations,
+          key
+        )
+      ) {
+        element.setAttribute(
+          'aria-label',
+          currentTranslations[key]
+        );
+      }
+    });
+
   // Update document language
   document.documentElement.lang = lang;
 
   // Update page title only when the page explicitly uses data-i18n
-  const titleElement = document.querySelector('title[data-i18n]');
+  const titleElement = document.querySelector(
+    'title[data-i18n]'
+  );
 
   if (titleElement) {
     const titleKey = titleElement.getAttribute('data-i18n');
 
     if (
-      Object.prototype.hasOwnProperty.call(currentTranslations, titleKey)
+      Object.prototype.hasOwnProperty.call(
+        currentTranslations,
+        titleKey
+      )
     ) {
       document.title = currentTranslations[titleKey];
     }
   }
 
   // Update language buttons
-  document.querySelectorAll('[data-language]').forEach((button) => {
-    const buttonLanguage = button.getAttribute('data-language');
+  document
+    .querySelectorAll('[data-language], [data-lang]')
+    .forEach((button) => {
+      const buttonLanguage =
+        button.getAttribute('data-language') ||
+        button.getAttribute('data-lang');
 
-    button.classList.toggle(
-      'active',
-      buttonLanguage === lang
-    );
+      const isActive = buttonLanguage === lang;
 
-    button.setAttribute(
-      'aria-pressed',
-      buttonLanguage === lang ? 'true' : 'false'
-    );
-  });
+      button.classList.toggle(
+        'active',
+        isActive
+      );
+
+      button.setAttribute(
+        'aria-pressed',
+        isActive ? 'true' : 'false'
+      );
+    });
 
   // Save selected language
-  localStorage.setItem('siteLanguage', lang);
+  localStorage.setItem(
+    'siteLanguage',
+    lang
+  );
 }
+
 
 function setupLanguageSwitcher() {
-  document.querySelectorAll('[data-language]').forEach((button) => {
-    button.addEventListener('click', () => {
-      const language = button.getAttribute('data-language');
+  document
+    .querySelectorAll('[data-language], [data-lang]')
+    .forEach((button) => {
+      button.addEventListener('click', () => {
+        const language =
+          button.getAttribute('data-language') ||
+          button.getAttribute('data-lang');
 
-      if (language === 'id' || language === 'en') {
-        applyTranslations(language);
-      }
+        if (
+          language === 'id' ||
+          language === 'en'
+        ) {
+          applyTranslations(language);
+        }
+      });
     });
-  });
 }
+
 
 function initializeLanguage() {
   const language = getSavedLanguage();
@@ -295,6 +453,7 @@ function initializeLanguage() {
   applyTranslations(language);
   setupLanguageSwitcher();
 }
+
 
 if (document.readyState === 'loading') {
   document.addEventListener(
