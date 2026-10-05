@@ -9,7 +9,15 @@
     grid-template-columns: 1fr;
     gap: 24px;
     min-height: auto;
-    padding-top: 40px;
+    padding-block: 36px;
+  }
+
+  .hero-visual {
+    min-height: clamp(260px, 38vw, 360px);
+  }
+
+  .hero-image-wrap {
+    width: min(100%, clamp(300px, 34vw, 360px));
   }
 }
 
@@ -109,11 +117,49 @@
 
   .hero {
     min-height: auto;
-    padding-top: 30px;
+    gap: 12px;
+    padding-block: 24px;
   }
 
   .hero h1 {
-    font-size: clamp(2.8rem, 17vw, 4.8rem);
+    font-size: clamp(1.75rem, 7.4vw, 2.1rem);
+  }
+
+  .hero-visual {
+    min-height: clamp(180px, 55vw, 240px);
+  }
+
+  .hero-image-wrap {
+    width: min(100%, 260px);
+    padding: 16px;
+  }
+
+  .hero + .section {
+    padding-top: 44px;
+  }
+
+  .hero + .section .section-head h2 {
+    font-size: clamp(1.75rem, 6.5vw, 2rem);
+  }
+
+  .hero + .section .about-layout .about-copy p:first-child {
+    font-size: clamp(1.3rem, 6vw, 1.6rem);
+  }
+
+  .cta-booking {
+    padding-top: 44px;
+  }
+
+  .cta-box {
+    padding: clamp(20px, 6vw, 28px);
+  }
+
+  .cta-box h2 {
+    font-size: clamp(1.55rem, 7vw, 1.85rem);
+  }
+
+  .hero-actions .btn {
+    width: auto;
   }
 
   .btn {
